@@ -49,6 +49,7 @@ class TEITagsHooks {
 		$parser->setHook( 'head'   , array( $this , 'RenderHead' ));
 		$parser->setHook( 'sic'    , array( $this , 'RenderSic' ));
 		$parser->setHook( 'foreign', array( $this , 'RenderForeign' ));
+		$parser->setHook( 'subst'	 , array( $this , 'RenderSubst'));
 
 		$wgOut->addModules( 'ext.TEITags' );
 
@@ -114,6 +115,11 @@ class TEITagsHooks {
 		return $this->TEITagsRenderer( 'foreign', $HookArgs );
 	}
 
+	public function RenderSubst(){
+		$HookArgs = func_get_args();
+		return $this->TEITagsRenderer( 'subst', $HookArgs );
+	}
+
 	private function TEITagsRenderer ( $tag, $HookArgs ){
 
 		$input  = $HookArgs[0];
@@ -137,23 +143,3 @@ class TEITagsHooks {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
